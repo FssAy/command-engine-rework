@@ -38,7 +38,7 @@ mod command_async {
     pub trait Command: CommandInfo + Send + Sync + 'static {
         type Output;
 
-        fn on_execute<'a>(&self, ins: Instruction<'a>) -> OutputFuture<'a, Self::Output>;
+        fn on_execute<'a>(&'a self, ins: Instruction<'a>) -> OutputFuture<'a, Self::Output>;
     }
 
     pub struct OutputFuture<'a, Output> {
